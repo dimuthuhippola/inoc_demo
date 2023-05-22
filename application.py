@@ -5,7 +5,7 @@ from resources.add_user import AddUser
 from resources.view_user import ViewUser
 
 application = Flask(__name__)
-application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://dimuthuh:123_bumblebee@localhost:5432/inoc_tutorial'
+application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://demo_user:123456@localhost:5432/inoc_tutorial'
 api = Api(application)
 
 

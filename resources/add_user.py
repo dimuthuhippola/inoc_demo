@@ -7,7 +7,6 @@ class AddUser(Resource):
 
     def post(self):
         user_data = request.get_json()
-
         user = Users(user_name=user_data.get('user_name'),
                      pass_word=user_data.get('pass_word'),
                      emp_name=user_data.get('emp_name'))
