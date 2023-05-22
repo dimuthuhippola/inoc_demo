@@ -1,21 +1,22 @@
 from flask import Flask
 from flask_restful import Api
-
-from resources.first_resource import FirstResource
+from db import db
+from resources.add_user import AddUser
+from resources.view_user import ViewUser
 
 application = Flask(__name__)
-
+application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://dimuthuh:123_bumblebee@localhost:5432/inoc_tutorial'
 api = Api(application)
 
-api.add_resource(FirstResource, '/firstResource/<string:name>')
 
-@application.route('/')
-def home():
-    return {
-        'Key': 'key',
-        'value': 'value'
-    }
 
+db.init_app(application)
+with application.app_context():
+        db.create_all()
+
+
+api.add_resource(AddUser, '/addUser')
+api.add_resource(ViewUser, '/viewUser/<int:id>')
 
 if __name__ == '__main__':
     application.run(host="127.0.0.1", debug=True, port=5010)
