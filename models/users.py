@@ -25,3 +25,11 @@ class Users(db.Model):
     @classmethod
     def find_user(cls, id):
         return cls.query.with_entities(cls.user_name, cls.emp_name).filter(cls.id == id).first()
+
+    @classmethod
+    def find_by_username(cls, username):
+        return cls.query.filter(cls.user_name == username).first()
+
+    @classmethod
+    def find_by_id(cls, user_id):
+        return cls.query.filter(cls.id == user_id).first()
